@@ -1,0 +1,25 @@
+/*Posición del Carrito*/
+.cartContainer {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-right: 60px;
+}
+
+/*Tamaño del carrito*/
+.carrito-icon {
+    width: 50px;
+    cursor: pointer;
+}
+
+/*Contador del Carrito*/
+.cart-counter {
+    position: absolute;
+    top: -5px;
+    right: -10px;
+    background-color: #ff0000;
+    color: rgb(255, 255, 255);
+    border-radius: 50%;
+    padding: 0.2rem 0.5rem;
+    font-size: 0.8rem;
+}

@@ -1,0 +1,52 @@
+.header {
+  display: flex;
+  background-color: #383535;
+  position: fixed;
+  width: 100%;
+  height: 4.5rem;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 20px;
+  z-index: 1000;
+}
+
+/*Logo de la página*/
+.logo {
+  flex: 0 0 auto;
+  margin-right: 500px;
+}
+
+.logo img {
+  width: 160px;
+  height: auto;
+}
+
+/*Navegación*/
+.navContainer {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+/*UL*/
+.menu {
+  display: flex;
+  list-style: none;
+  gap: 1.5rem;
+  margin-left: 40px;
+}
+
+.menu li a {
+  color: #ccc;
+  text-decoration: none;
+  transition: all 100ms ease;
+  font-weight: bold;
+}
+
+.menu li a:hover {
+  color: #ffffff;
+}
