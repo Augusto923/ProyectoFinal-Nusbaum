@@ -1,7 +1,8 @@
-
 # 🛍️ E-Commerce React - Proyecto Final
 
 Este es el proyecto final del curso de **React**, donde se desarrolla una aplicación web de tipo *E-Commerce* como **Single Page Application (SPA)**, utilizando **React** y **Firebase** como base de datos.
+
+Puedes ver la aplicación en vivo [aquí](https://proyecto-final-nusbaum-qyef.vercel.app/).
 
 ---
 
@@ -41,10 +42,10 @@ Todo esto en una interfaz clara, amigable y 100% funcional.
 - 🔄 Renderizado condicional: loaders, errores, carrito vacío  
 - 📱 Diseño responsive y estilado modular  
 - ♻️ Componentes reutilizables y organizados  
+
 ## 📂 Estructura del Proyecto
 
 ```bash
-
 src/
 ├── assets/
 		├── carrito-icon.png
