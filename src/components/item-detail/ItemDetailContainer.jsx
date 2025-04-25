@@ -1,44 +1,57 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import ItemDetail from './ItemDetaail.jsx';
 import './ItemDetailContainer.css';
+import { getItemById } from '../../firebase/db';
+import { useCart } from '../../context/CartContext';
 
 function ItemDetailContainer() {
-    const { id } = useParams();
-    const [product, setProduct] = useState(null);
-    const [error, setError] = useState(null);
+  const { id } = useParams();
+  const [product, setProduct] = useState(null);
+  const [error, setError] = useState(null);
+  const [quantity, setQuantity] = useState(1);
+  const [selectedImage, setSelectedImage] = useState("");
+  const [added, setAdded] = useState(false);
+  const { addItem } = useCart();
 
-    useEffect(() => {
-        setProduct(null);
-        setError(null);
+  useEffect(() => {
+    setProduct(null);
+    setError(null);
+    setAdded(false);
 
-        fetch(`https://dummyjson.com/products/${id}`)
-            .then(res => {
-                if (!res.ok) throw new Error("No se pud cargar el producto");
-                return res.json();
-            })
-            .then(data => setProduct(data))
-            .catch(err => setError(err.message));
-    }, [id]);
+    getItemById(id)
+      .then(data => {
+        setProduct(data);
+        setSelectedImage(data.thumbnail);
+      })
+      .catch(err => {
+        setError(err.message);
+      });
+  }, [id]);
 
-    return (
-        <div className="productDetailContainer">
-            {error && <p className="errorMsg">{error}</p>}
-            {product ? (
-                <div className="productDetail">
-                    <img src={product.thumbnail} alt={product.title} className="productImage" />
-                    <div className="productInfo">
-                        <h1>{product.title}</h1>
-                        <p className="productDescription">{product.description}</p>
-                        <p className="productCategory"><strong>Categoria:</strong> {product.category}</p>
-                        <p className="productPrice"><strong>Precio:</strong> ${product.price}</p>
-                        <button className="buyButton">Añadir al Carrito</button>
-                    </div>
-                </div>
-            ) : (
-                !error && <p className="loadingText">Cargando producto...</p>
-            )}
-        </div>
-    );
+  const handleAddToCart = () => {
+    addItem(product, quantity);
+    setAdded(true);
+  };
+
+  return (
+    <div className="productDetailContainer">
+      {error && <p className="errorMsg">{error}</p>}
+      {!product && !error && <p className="loadingText">Cargando productos...</p>}
+
+      {product && (
+        <ItemDetail
+          product={product}
+          quantity={quantity}
+          setQuantity={setQuantity}
+          handleAddToCart={handleAddToCart}
+          selectedImage={selectedImage}
+          setSelectedImage={setSelectedImage}
+          added={added}
+        />
+      )}
+    </div>
+  );
 }
 
 export default ItemDetailContainer;

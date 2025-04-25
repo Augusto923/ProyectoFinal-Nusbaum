@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import CartWidget from '../carrito/CartWidget';
+import CartWidget from '../cart/CartWidget';
 import logo from '../../assets/logo.png';
 import './NavBar.css';
 
 function NavBar() {
 
-    const [categories] = useState(["Smartphones", "Laptops", "Fragrances", "Skincare"]);
+    const [categories] = useState(["Groceries", "Furniture", "Fragrances", "Beauty"]);
 
     return (
         <nav className='header'>
